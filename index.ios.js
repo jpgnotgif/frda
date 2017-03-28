@@ -11,33 +11,41 @@ import {
   Text,
   View,
   ListView,
+  ActivityIndicatorIOS,
 } from 'react-native';
 
 const { List } = require('immutable');
 
 const styles = StyleSheet.create({
-  container: {
+  shared: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
+  },
+
+  container: {
     backgroundColor: '#F5FCFF',
     padding: 100
   },
 
   character: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    color: 'purple'
   }
 });
 
-class Characters {
+const apiUrl = 'http://localhost:3000/sfv/s2'
+
+export default class frda extends Component {
   constructor() {
-    this.apiUrl = 'http://localhost:3000/sfv/s2'
+    super()
+    this.state = {
+      dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+      isLoading: true
+    }
   }
 
-  list() {
-    return fetch(`${this.apiUrl}/characters`, {
+  fetchData() {
+    fetch(`${apiUrl}/characters`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -45,41 +53,30 @@ class Characters {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      return List(responseJson.characters);
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(responseJson.characters),
+        isLoading: false
+      })
     })
     .catch((error) => {
-      console.error(error);
-    });
+      console.error(error)
+    })
+    .done();
   }
-}
 
-export default class frda extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    const rows = ['row 1', 'row 2']
-
-    /*
-     * TODO: Figure out why data from
-     * API cannot be set in state
-    */
-    const characters = new Characters()
-    const names = characters.list()
-      .then((names) => {
-        this.setState({names: names})
-      })
-      .catch((error) => {
-        console.log(`error: ${error}`)
-      })
+  componentDidMount() {
+    this.fetchData()
   }
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.shared, styles.container]}>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) => <Text>{rowData}</Text>}
+        />
       </View>
-    );
+    )
   }
 }
 
