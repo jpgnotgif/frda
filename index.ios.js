@@ -1,78 +1,70 @@
 import React, { Component } from 'react';
+
 import {
-  ActivityIndicatorIOS,
-  AppRegistry,
-  ListView,
-  Image,
-  StyleSheet,
+  Body,
+  Container,
+  Content,
+  Left,
+  ListItem,
+  Right,
+  Spinner,
   Text,
-  View,
-} from 'react-native';
+  Thumbnail,
+} from 'native-base';
 
-const config        = require("./config/defaults");
-const Character     = require("./components/character");
-const CharacterList = require('./components/character-list');
+import { AppRegistry } from 'react-native'
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'flex-start',
-    backgroundColor: '#F5FCFF',
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    padding: 40
-  }
-});
+const { Seq } = require('immutable')
+
+const config        = require('./config/defaults')
+const styles        = require('./styles/defaults')
+const Character     = require('./components/character')
+const CharacterList = require('./components/character-list')
 
 export default class frda extends Component {
   constructor() {
     super()
     this.characterList = new CharacterList()
     this.state = {
-      dataSource:  new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
-      isLoading: true
+      data: {}
     }
   }
 
   componentDidMount() {
     this.characterList.load()
       .then((names) => {
+        const characters = {}
         names.forEach((name) => {
-          console.log(`${config.assets.url}/${name}.png`)
+          characters[name] = `${config.assets.url}/${name}.png`
         })
-
-        const slice = [
-          names[0],
-          names[1],
-          names[2],
-          names[3],
-          names[4],
-        ]
 
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(slice),
-          isLoading: false
+          data: characters
         })
+
       })
       .catch((error) => { console.log(error) })
       .done()
   }
 
+  createCharacterComponents() {
+    const characterComponents = []
+    for (name in this.state.data) {
+      characterComponents.push(
+        <Character name={name} imageUrl={this.state.data[name]} key={name} />
+      )
+    }
+    return characterComponents
+  }
+
   render() {
+    const characterComponents = this.createCharacterComponents()
     return (
-      <View style={styles.container}>
-        <ListView
-          horizontal={true}
-          dataSource={this.state.dataSource}
-          renderRow={(name) =>
-            <View style={{padding: 10}}>
-              <Image source={{uri: `${config.assets.url}/${name}.png`}}
-                style={{width: 40, height: 40}} />
-            </View>
-          }
-        />
-      </View>
+      <Container>
+        <Content>
+          {characterComponents}
+        </Content>
+      </Container>
     )
   }
 }
