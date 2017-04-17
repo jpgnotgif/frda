@@ -47,7 +47,7 @@ export default class frda extends Component {
       .done()
   }
 
-  createCharacterComponents() {
+  createCharactersComponent() {
     const characterComponents = []
     for (name in this.state.data) {
       characterComponents.push(
@@ -58,11 +58,11 @@ export default class frda extends Component {
   }
 
   render() {
-    const characterComponents = this.createCharacterComponents()
+    const charactersComponent = this.createCharactersComponent()
     return (
       <Container>
         <Content>
-          {characterComponents}
+          {charactersComponent}
         </Content>
       </Container>
     )

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {
   Body,
+  Button,
   Left,
   ListItem,
   Text,
@@ -16,14 +17,22 @@ export default class Character extends Component {
     this.imageUrl = this.props.imageUrl
   }
 
+  loadCharacterFrames(name) {
+    console.log(`name: ${name}`)
+  }
+
   render() {
     return (
       <ListItem avatar>
         <Left>
-          <Thumbnail small source={{uri: this.imageUrl}} />
+          <Button onPress={() => this.loadCharacterFrames(this.name)} dark transparent>
+            <Thumbnail medium source={{uri: this.imageUrl}} />
+          </Button>
         </Left>
         <Body>
-          <Text>{this.name}</Text>
+          <Button onPress={() => this.loadCharacterFrames(this.name)} dark transparent>
+            <Text>{this.name}</Text>
+          </Button>
         </Body>
       </ListItem>
     )
