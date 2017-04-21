@@ -1,5 +1,7 @@
 # frda
 
+![alt text](https://s3.amazonaws.com/project-demos/frda-ios-demo.gif)
+
 An IOS mobile application to display SFV character frame data.
 Utilizes the [frda.js API](https://github.com/jpgnotgif/frda.js)
 
