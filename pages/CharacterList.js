@@ -64,7 +64,6 @@ export default class CharacterList extends Component {
           name={name}
           imageUrl={this.state.data[name]}
           navigation={this.navigation}
-          routeMetadata={this.routeMetadata}
         />
       )
     }

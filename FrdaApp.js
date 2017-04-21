@@ -11,30 +11,27 @@ import CharacterFrameData from './pages/CharacterFrameData'
 
 const routes = {
   CharacterList: {
-    name: 'SFV Characters',
     screen: CharacterList
   },
 
   CharacterFrameData: {
-    name: 'Frame Data',
-    screen: CharacterFrameData,
+    screen: CharacterFrameData
   }
 }
 
 const MainScreen = ({ navigation }) => (
   <CharacterList
     navigation={navigation}
-    routeMetadata={routes}
   />
 )
 
 const AppNavigator = StackNavigator({
   ...routes,
-  Index: {
+  Home: {
     screen: MainScreen,
   },
 }, {
-  initialRouteName: 'Index',
+  initialRouteName: 'Home',
   headerMode: 'none',
 })
 

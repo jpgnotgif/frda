@@ -14,13 +14,11 @@ const config = require('../config/defaults')
 export default class CharacterFrameData extends Component {
   constructor(props) {
     super(props)
-    this.name = this.props.name
-    this.imageUrl = this.props.imageUrl
+    this.name     = this.props.navigation.state.params.name
+    this.imageUrl = this.props.navigation.state.params.imageUrl
   }
 
   render() {
-    console.log(this.name)
-    console.log(this.imageUrl)
     return (
       <Container>
         <Content>
