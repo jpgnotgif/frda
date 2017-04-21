@@ -3,9 +3,13 @@ import React, {
 } from 'react'
 
 import {
+  Body,
   Container,
   Content,
-  StyleProvider
+  Header,
+  StyleProvider,
+  Text,
+  Title
 } from 'native-base'
 
 const config = require('../config/defaults')
@@ -78,6 +82,13 @@ export default class CharacterList extends Component {
     return (
       <StyleProvider style={getTheme(platform)}>
         <Container>
+          <Header>
+            <Body>
+              <Title>
+                <Text>SFV Frame Data</Text>
+              </Title>
+            </Body>
+          </Header>
           <Content>
             {charactersComponent}
           </Content>

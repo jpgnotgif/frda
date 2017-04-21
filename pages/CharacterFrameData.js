@@ -47,7 +47,7 @@ export default class CharacterFrameData extends Component {
             </Body>
           </Header>
           <Content>
-            <Text>Add Frame Data here</Text>
+            <Text></Text>
           </Content>
           <Footer>
             <FooterTab>
