@@ -4,13 +4,16 @@ import React, {
 
 import {
   Container,
-  Content
+  Content,
+  StyleProvider
 } from 'native-base'
 
 const config = require('../config/defaults')
 const apiUrl = config.sfv.url
 
-import Character from './Character'
+import getTheme   from '../native-base-theme/components'
+import platform   from '../native-base-theme/variables/platform'
+import Character  from './Character'
 
 export default class CharacterList extends Component {
   constructor(props) {
@@ -73,11 +76,13 @@ export default class CharacterList extends Component {
   render() {
     const charactersComponent = this.createCharactersComponent()
     return (
-      <Container>
-        <Content>
-          {charactersComponent}
-        </Content>
-      </Container>
+      <StyleProvider style={getTheme(platform)}>
+        <Container>
+          <Content>
+            {charactersComponent}
+          </Content>
+        </Container>
+      </StyleProvider>
     )
   }
 }
