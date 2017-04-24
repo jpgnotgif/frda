@@ -9,7 +9,7 @@ import {
   Thumbnail
 } from 'native-base'
 
-const config = require('../config/defaults')
+const config = require('../../config/defaults')
 
 export default class Character extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ export default class Character extends Component {
         <Left>
           <Button dark transparent onPress={() => {
             this.navigation.navigate(
-              'CharacterFrameData', {
+              'FrameData', {
                 name: this.name,
                 imageUrl: this.imageUrl
               })

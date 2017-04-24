@@ -1,0 +1,8 @@
+{
+  "sfv": {
+    "url": "https://frda.herokuapp.com/sfv/s2"
+  },
+  "assets": {
+    url: "https://s3.amazonaws.com/frda-assets"
+  }
+}

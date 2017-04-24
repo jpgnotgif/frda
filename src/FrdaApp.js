@@ -6,16 +6,16 @@ import {
   StackNavigator
 } from 'react-navigation'
 
-import CharacterList      from './pages/CharacterList'
-import CharacterFrameData from './pages/CharacterFrameData'
+import CharacterList from './components/CharacterList'
+import FrameData from './components/FrameData'
 
 const routes = {
   CharacterList: {
     screen: CharacterList
   },
 
-  CharacterFrameData: {
-    screen: CharacterFrameData
+  FrameData: {
+    screen: FrameData
   }
 }
 

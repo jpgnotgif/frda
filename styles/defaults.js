@@ -23,6 +23,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center'
+  },
+
+  footerCol: {
+    alignItems: 'center',
+    backgroundColor: '#384850',
+  },
+
+  footerTextHeader: {
+    fontWeight: 'bold'
+  },
+
+  footerText: {
+    color: 'white',
+    fontFamily: 'Helvetica',
+    fontSize: 20
   }
 })
 

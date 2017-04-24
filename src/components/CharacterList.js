@@ -12,18 +12,17 @@ import {
   Title
 } from 'native-base'
 
-const config = require('../config/defaults')
+const config = require('../../config/defaults')
 const apiUrl = config.sfv.url
 
-import getTheme   from '../native-base-theme/components'
-import platform   from '../native-base-theme/variables/platform'
+import getTheme   from '../../native-base-theme/components'
+import platform   from '../../native-base-theme/variables/platform'
 import Character  from './Character'
 
 export default class CharacterList extends Component {
   constructor(props) {
     super(props)
     this.navigation = this.props.navigation
-    this.routeMetadata = this.props.routeMetadata
     this.state = {
       data: {}
     }
