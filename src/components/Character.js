@@ -37,7 +37,7 @@ export default class Character extends Component {
         <Body>
           <Button dark transparent onPress={() => {
             this.navigation.navigate(
-              'CharacterFrameData', {
+              'FrameData', {
                 name: this.name,
                 imageUrl: this.imageUrl
               })

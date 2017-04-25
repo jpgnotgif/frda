@@ -1,18 +1,9 @@
 import React, { Component } from 'react'
 
 import {
-  Body,
-  Button,
   Container,
   Content,
-  Footer,
-  FooterTab,
-  Header,
-  Icon,
-  Left,
   StyleProvider,
-  Title,
-  Thumbnail
 } from 'native-base'
 
 import {
@@ -31,6 +22,9 @@ import platform from '../../native-base-theme/variables/platform'
 
 import config from '../../config/defaults'
 import styles from '../../styles/defaults'
+
+import FrameDataHeader from './FrameDataHeader'
+import FrameDataFooter from './FrameDataFooter'
 
 export default class FrameData extends Component {
   constructor(props) {
@@ -74,62 +68,22 @@ export default class FrameData extends Component {
       .done()
   }
 
-  healthComponent() {
-    return (
-      <Col style={[styles.footerCol, { borderRightWidth: 2}]}>
-        <Row>
-          <Text style={[styles.footerTextHeader, styles.footerText]}>Health</Text>
-        </Row>
-        <Row>
-          <Text key="health" style={styles.footerText}>{this.state.metadata.health}</Text>
-        </Row>
-      </Col>
-    )
-  }
-
-  stunComponent() {
-    return (
-      <Col style={styles.footerCol}>
-        <Row>
-          <Text style={[styles.footerTextHeader, styles.footerText]}>Stun</Text>
-        </Row>
-        <Row>
-          <Text key="stun" style={styles.footerText}>{this.state.metadata.stun}</Text>
-        </Row>
-      </Col>
-    )
-  }
-
   render() {
-    const healthComponent = this.healthComponent()
-    const stunComponent   = this.stunComponent()
     return (
       <StyleProvider style={getTheme(platform)}>
         <Container>
-          <Header>
-            <Left>
-              <Button transparent
-                onPress = {() => this.navigation.goBack(null)}>
-                <Icon name='arrow-back' />
-              </Button>
-            </Left>
-            <Body>
-              <Title>
-                <Thumbnail small source={{uri: this.imageUrl}} />
-              </Title>
-            </Body>
-          </Header>
+          <FrameDataHeader
+            name={this.name}
+            imageUrl={this.imageUrl}
+            navigation={this.navigation}
+          />
           <Content>
             <Text></Text>
           </Content>
-          <Footer>
-            <FooterTab>
-              <Grid>
-                { healthComponent }
-                { stunComponent }
-              </Grid>
-            </FooterTab>
-          </Footer>
+          <FrameDataFooter
+            health={this.state.metadata.health}
+            stun={this.state.metadata.stun}
+          />
         </Container>
       </StyleProvider>
     )
