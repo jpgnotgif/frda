@@ -23,10 +23,6 @@ import {
 import styles from '../../styles/defaults'
 
 export default class FrameDataFooter extends Component {
-//constructor(props) {
-//  super(props)
-//}
-
   componentWillReceiveProps(props) {
     this.health = props.health
     this.stun   = props.stun

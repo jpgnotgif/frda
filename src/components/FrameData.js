@@ -17,6 +17,11 @@ import {
   Row
 } from 'react-native-easy-grid'
 
+import {
+  List,
+  OrderedMap,
+} from 'immutable'
+
 import getTheme from '../../native-base-theme/components'
 import platform from '../../native-base-theme/variables/platform'
 
@@ -25,6 +30,7 @@ import styles from '../../styles/defaults'
 
 import FrameDataHeader from './FrameDataHeader'
 import FrameDataFooter from './FrameDataFooter'
+import FrameDatum      from './sfv/FrameDatum'
 
 export default class FrameData extends Component {
   constructor(props) {
@@ -41,7 +47,7 @@ export default class FrameData extends Component {
   }
 
   load() {
-    return fetch(`${this.apiUrl}/${this.name}`, {
+    return fetch(`${this.apiUrl}/${this.name}?normals=true`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -68,7 +74,21 @@ export default class FrameData extends Component {
       .done()
   }
 
+  createFrameData() {
+    const attacks = this.state.attacks
+    const frameDatums = []
+
+    for (name in attacks) {
+      frameDatums.push(
+        <FrameDatum key={name} name={name} metadata={attacks[name]} />
+      )
+    }
+
+    return frameDatums
+  }
+
   render() {
+    const frameData = this.createFrameData()
     return (
       <StyleProvider style={getTheme(platform)}>
         <Container>
@@ -78,7 +98,7 @@ export default class FrameData extends Component {
             navigation={this.navigation}
           />
           <Content>
-            <Text></Text>
+            { frameData }
           </Content>
           <FrameDataFooter
             health={this.state.metadata.health}
