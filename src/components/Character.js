@@ -9,7 +9,8 @@ import {
   Thumbnail
 } from 'native-base'
 
-const config = require('../../config/defaults')
+import config from '../../config/defaults'
+import Name   from './sfv/Name'
 
 export default class Character extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ export default class Character extends Component {
                 imageUrl: this.imageUrl
               })
             }} >
-            <Text>{this.name}</Text>
+            <Name value={this.name} />
           </Button>
         </Body>
       </ListItem>

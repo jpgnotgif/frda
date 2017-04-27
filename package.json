@@ -13,7 +13,8 @@
     "native-base": "2.1.0",
     "react": "15.4.2",
     "react-native": "0.42.3",
-    "react-navigation": "^1.0.0-beta.7"
+    "react-navigation": "^1.0.0-beta.7",
+    "uppercamelcase": "^3.0.0"
   },
   "devDependencies": {
     "babel-jest": "19.0.0",

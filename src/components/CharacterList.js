@@ -49,7 +49,7 @@ export default class CharacterList extends Component {
       .then((names) => {
         const characters = {}
         names.forEach((name) => {
-          characters[name] = `${config.assets.url}/${name}.png`
+          characters[name] = `${config.assets.url}/${name.toLowerCase()}.png`
         })
 
         this.setState({

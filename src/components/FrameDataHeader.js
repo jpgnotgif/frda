@@ -24,6 +24,7 @@ import {
 } from 'react-native-easy-grid'
 
 import styles from '../../styles/defaults'
+import Name   from './sfv/Name'
 
 export default class FrameDataHeader extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ export default class FrameDataHeader extends Component {
           </Button>
         </Left>
         <Body>
-          <Title>{this.name}</Title>
+          <Name value={this.name} />
         </Body>
         <Right>
           <Thumbnail small source={{uri: this.imageUrl}} />
