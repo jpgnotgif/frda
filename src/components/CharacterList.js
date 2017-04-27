@@ -96,5 +96,3 @@ export default class CharacterList extends Component {
     )
   }
 }
-
-module.exports = CharacterList

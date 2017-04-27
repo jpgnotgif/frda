@@ -25,7 +25,7 @@ import FrameDataFooter     from './FrameDataFooter'
 import AttackName          from './AttackName'
 import FrameDataGridHeader from './FrameDataGridHeader'
 
-export default class FrameData extends Component {
+export default class AttackList extends Component {
   constructor(props) {
     super(props)
     this.apiUrl           = config.sfv.url
@@ -97,5 +97,3 @@ export default class FrameData extends Component {
     )
   }
 }
-
-module.exports = FrameData

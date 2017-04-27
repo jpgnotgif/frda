@@ -15,7 +15,7 @@ import styles from '../../styles/defaults'
 export default class AttackName extends Component {
   constructor(props) {
     super(props)
-    this.name     = _.replace(this.props.name, '_', ' ')
+    this.name     = _.replace(this.props.name, /_/g, ' ')
     this.metadata = this.props.metadata
   }
 

@@ -27,7 +27,7 @@ export default class Character extends Component {
         <Left>
           <Button dark transparent onPress={() => {
             this.navigation.navigate(
-              'FrameData', {
+              'AttackList', {
                 name: this.name,
                 imageUrl: this.imageUrl
               })
@@ -38,7 +38,7 @@ export default class Character extends Component {
         <Body>
           <Button dark transparent onPress={() => {
             this.navigation.navigate(
-              'FrameData', {
+              'AttackList', {
                 name: this.name,
                 imageUrl: this.imageUrl
               })
@@ -50,5 +50,3 @@ export default class Character extends Component {
     )
   }
 }
-
-module.exports = Character
