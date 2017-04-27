@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import {
   Container,
   Content,
+  List,
+  ListItem,
   StyleProvider,
 } from 'native-base'
 
@@ -11,26 +13,17 @@ import {
   Text
 } from 'react-native'
 
-import {
-  Col,
-  Grid,
-  Row
-} from 'react-native-easy-grid'
-
-import {
-  List,
-  OrderedMap,
-} from 'immutable'
-
+import _ from 'lodash'
 import getTheme from '../../native-base-theme/components'
 import platform from '../../native-base-theme/variables/platform'
 
 import config from '../../config/defaults'
 import styles from '../../styles/defaults'
 
-import FrameDataHeader from './FrameDataHeader'
-import FrameDataFooter from './FrameDataFooter'
-import FrameDatum      from './sfv/FrameDatum'
+import FrameDataHeader     from './FrameDataHeader'
+import FrameDataFooter     from './FrameDataFooter'
+import AttackName          from './AttackName'
+import FrameDataGridHeader from './FrameDataGridHeader'
 
 export default class FrameData extends Component {
   constructor(props) {
@@ -74,21 +67,14 @@ export default class FrameData extends Component {
       .done()
   }
 
-  createFrameData() {
-    const attacks = this.state.attacks
-    const frameDatums = []
-
-    for (name in attacks) {
-      frameDatums.push(
-        <FrameDatum key={name} name={name} metadata={attacks[name]} />
-      )
-    }
-
-    return frameDatums
-  }
-
   render() {
-    const frameData = this.createFrameData()
+    const attackNameComponents = []
+    _.forEach(this.state.attacks, (attackData, name) => {
+      attackNameComponents.push(
+        <AttackName key={name} name={name} metadata={attackData} />
+      )
+    })
+
     return (
       <StyleProvider style={getTheme(platform)}>
         <Container>
@@ -98,7 +84,9 @@ export default class FrameData extends Component {
             navigation={this.navigation}
           />
           <Content>
-            { frameData }
+            <List>
+              { attackNameComponents }
+            </List>
           </Content>
           <FrameDataFooter
             health={this.state.metadata.health}

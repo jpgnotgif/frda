@@ -1,22 +1,9 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#F5FCFF',
-    padding: 40
-  },
-
   item: {
-    alignItems: 'center',
-    backgroundColor: '#F6F6F6',
-    borderColor: '#CCC',
-    borderRadius: 5,
-    borderWidth: 1,
-    height: 100,
-    justifyContent: 'center',
-    margin: 10,
-    padding: 5,
-    width: 100
+    fontSize: 12,
+    padding: 20
   },
 
   list: {
