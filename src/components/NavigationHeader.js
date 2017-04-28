@@ -26,7 +26,7 @@ import {
 import styles from '../../styles/defaults'
 import Name   from './sfv/Name'
 
-export default class FrameDataHeader extends Component {
+export default class NavigationHeader extends Component {
   constructor(props) {
     super(props)
     this.navigation = this.props.navigation

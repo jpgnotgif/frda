@@ -7,7 +7,8 @@ import {
 } from 'react-navigation'
 
 import CharacterList from './components/CharacterList'
-import AttackList from './components/AttackList'
+import AttackList    from './components/AttackList'
+import FrameData     from './components/FrameData'
 
 const routes = {
   CharacterList: {
@@ -16,6 +17,10 @@ const routes = {
 
   AttackList: {
     screen: AttackList
+  },
+
+  FrameData: {
+    screen: FrameData
   }
 }
 

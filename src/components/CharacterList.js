@@ -12,6 +12,12 @@ import {
   Title
 } from 'native-base'
 
+import {
+  fromJS,
+  List,
+  OrderedMap
+} from 'immutable'
+
 const config = require('../../config/defaults')
 const apiUrl = config.sfv.url
 
@@ -24,7 +30,7 @@ export default class CharacterList extends Component {
     super(props)
     this.navigation = this.props.navigation
     this.state = {
-      data: {}
+      data: OrderedMap()
     }
   }
 
@@ -35,7 +41,7 @@ export default class CharacterList extends Component {
         'Content-Type': 'application/json'
       }
     })
-    .then((response) => response.json())
+    .then((response) => fromJS(response.json()))
     .then((responseJson) => {
       return responseJson.characters
     })
@@ -47,37 +53,17 @@ export default class CharacterList extends Component {
   componentDidMount() {
     this.load()
       .then((names) => {
-        const characters = {}
-        names.forEach((name) => {
-          characters[name] = `${config.assets.url}/${name.toLowerCase()}.png`
-        })
-
         this.setState({
-          data: characters
+          data: OrderedMap(names.sort().map(
+            (name, index) => ([name, `${config.assets.url}/${name.toLowerCase()}.png`])
+          ))
         })
-
       })
       .catch((error) => { console.log(error) })
       .done()
   }
 
-  createCharactersComponent() {
-    const characterComponents = []
-    for (name in this.state.data) {
-      characterComponents.push(
-        <Character
-          key={name}
-          name={name}
-          imageUrl={this.state.data[name]}
-          navigation={this.navigation}
-        />
-      )
-    }
-    return characterComponents
-  }
-
   render() {
-    const charactersComponent = this.createCharactersComponent()
     return (
       <StyleProvider style={getTheme(platform)}>
         <Container>
@@ -89,7 +75,17 @@ export default class CharacterList extends Component {
             </Body>
           </Header>
           <Content>
-            {charactersComponent}
+            {
+              this.state.data.map((imageUrl, name) => {
+                return (
+                  <Character
+                    key={name}
+                    name={name}
+                    imageUrl={imageUrl}
+                    navigation={this.navigation} />
+                )
+              }).toList()
+            }
           </Content>
         </Container>
       </StyleProvider>

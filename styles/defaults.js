@@ -1,15 +1,17 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-  item: {
-    fontSize: 12,
-    padding: 20
+  headerItem: {
+    fontWeight: 'bold',
+    fontSize: 18
   },
 
-  list: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center'
+  item: {
+    fontSize: 18,
+  },
+
+  alignRight: {
+    textAlign: 'right'
   },
 
   footerCol: {

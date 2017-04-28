@@ -18,7 +18,6 @@ export default class Character extends Component {
     this.name          = this.props.name
     this.imageUrl      = this.props.imageUrl
     this.navigation    = this.props.navigation
-    this.routeMetadata = this.props.routeMetadata
   }
 
   render() {

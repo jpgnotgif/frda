@@ -22,7 +22,7 @@ import {
 
 import styles from '../../styles/defaults'
 
-export default class FrameDataFooter extends Component {
+export default class NavigationFooter extends Component {
   componentWillReceiveProps(props) {
     this.health = props.health
     this.stun   = props.stun

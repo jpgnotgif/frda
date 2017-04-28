@@ -20,10 +20,10 @@ import platform from '../../native-base-theme/variables/platform'
 import config from '../../config/defaults'
 import styles from '../../styles/defaults'
 
-import FrameDataHeader     from './FrameDataHeader'
-import FrameDataFooter     from './FrameDataFooter'
-import AttackName          from './AttackName'
-import FrameDataGridHeader from './FrameDataGridHeader'
+import NavigationHeader from './NavigationHeader'
+import NavigationFooter from './NavigationFooter'
+import AttackName       from './AttackName'
+import FrameDatum       from './FrameDatum'
 
 export default class AttackList extends Component {
   constructor(props) {
@@ -71,14 +71,20 @@ export default class AttackList extends Component {
     const attackNameComponents = []
     _.forEach(this.state.attacks, (attackData, name) => {
       attackNameComponents.push(
-        <AttackName key={name} name={name} metadata={attackData} />
+        <AttackName
+          key={name}
+          name={name}
+          imageUrl={this.imageUrl}
+          metadata={attackData}
+          navigation={this.navigation}
+        />
       )
     })
 
     return (
       <StyleProvider style={getTheme(platform)}>
         <Container>
-          <FrameDataHeader
+          <NavigationHeader
             name={this.name}
             imageUrl={this.imageUrl}
             navigation={this.navigation}
@@ -88,7 +94,7 @@ export default class AttackList extends Component {
               { attackNameComponents }
             </List>
           </Content>
-          <FrameDataFooter
+          <NavigationFooter
             health={this.state.metadata.health}
             stun={this.state.metadata.stun}
           />
