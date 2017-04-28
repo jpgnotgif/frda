@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {
   Container,
   Content,
-  List,
+  List as NativeBaseList,
   ListItem,
   StyleProvider,
 } from 'native-base'
@@ -12,6 +12,11 @@ import {
   StyleSheet,
   Text
 } from 'react-native'
+
+import {
+  List,
+  OrderedMap
+} from 'immutable'
 
 import _ from 'lodash'
 import getTheme from '../../native-base-theme/components'
@@ -34,8 +39,8 @@ export default class AttackList extends Component {
     this.name             = this.navigationParams.name
     this.imageUrl         = this.navigationParams.imageUrl
     this.state = {
-      metadata: {},
-      attacks: {}
+      metadata: OrderedMap(),
+      attacks: OrderedMap()
     }
   }
 
@@ -59,8 +64,8 @@ export default class AttackList extends Component {
     this.load()
       .then((responseJson) => {
         this.setState({
-          metadata: responseJson.metadata,
-          attacks: responseJson.attacks
+          metadata: OrderedMap(responseJson.metadata),
+          attacks: OrderedMap(responseJson.attacks)
         })
       })
       .catch((error) => { console.log(error) } )
@@ -68,19 +73,6 @@ export default class AttackList extends Component {
   }
 
   render() {
-    const attackNameComponents = []
-    _.forEach(this.state.attacks, (attackData, name) => {
-      attackNameComponents.push(
-        <AttackName
-          key={name}
-          name={name}
-          imageUrl={this.imageUrl}
-          metadata={attackData}
-          navigation={this.navigation}
-        />
-      )
-    })
-
     return (
       <StyleProvider style={getTheme(platform)}>
         <Container>
@@ -90,13 +82,23 @@ export default class AttackList extends Component {
             navigation={this.navigation}
           />
           <Content>
-            <List>
-              { attackNameComponents }
-            </List>
+            <NativeBaseList>
+              {
+                this.state.attacks.map((attackData, name) => {
+                  return <AttackName
+                    key={name}
+                    name={name}
+                    imageUrl={this.imageUrl}
+                    metadata={attackData}
+                    navigation={this.navigation}
+                  />
+                }).toList()
+              }
+            </NativeBaseList>
           </Content>
           <NavigationFooter
-            health={this.state.metadata.health}
-            stun={this.state.metadata.stun}
+            health={this.state.metadata.get('health')}
+            stun={this.state.metadata.get('stun')}
           />
         </Container>
       </StyleProvider>

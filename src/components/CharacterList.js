@@ -18,12 +18,12 @@ import {
   OrderedMap
 } from 'immutable'
 
-const config = require('../../config/defaults')
-const apiUrl = config.sfv.url
+import config    from '../../config/defaults'
+import getTheme  from '../../native-base-theme/components'
+import platform  from '../../native-base-theme/variables/platform'
+import Character from './Character'
 
-import getTheme   from '../../native-base-theme/components'
-import platform   from '../../native-base-theme/variables/platform'
-import Character  from './Character'
+const apiUrl = config.sfv.url
 
 export default class CharacterList extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ export default class CharacterList extends Component {
         'Content-Type': 'application/json'
       }
     })
-    .then((response) => fromJS(response.json()))
+    .then((response) => response.json())
     .then((responseJson) => {
       return responseJson.characters
     })
