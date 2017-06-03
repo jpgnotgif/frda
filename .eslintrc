@@ -72,10 +72,10 @@
     "es6": true,
     "node": true
   },
-  "plugins": {
+  "plugins": [
     "react",
     "react-native"
-  },
+  ],
   "ecmaFeatures": {
     "jsx": true
   }

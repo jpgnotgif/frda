@@ -18,7 +18,12 @@ import {
   OrderedMap
 } from 'immutable'
 
-import _ from 'lodash'
+import {
+  Col,
+  Grid,
+  Row
+} from 'react-native-easy-grid'
+
 import getTheme from '../../native-base-theme/components'
 import platform from '../../native-base-theme/variables/platform'
 
@@ -83,17 +88,65 @@ export default class AttackList extends Component {
           />
           <Content>
             <NativeBaseList>
-              {
-                this.state.attacks.map((attackData, name) => {
-                  return <AttackName
-                    key={name}
-                    name={name}
-                    imageUrl={this.imageUrl}
-                    metadata={attackData}
-                    navigation={this.navigation}
-                  />
-                }).toList()
-              }
+              <Grid style={{paddingTop: 14, paddingRight: 2, paddingBottom: 8, paddingLeft: 20}}>
+                <Row>
+                  <Col><Text style={styles.smallText}>Name</Text></Col>
+                  <Col><Text style={styles.smallText}>Dmg</Text></Col>
+                  <Col><Text style={styles.smallText}>St</Text></Col>
+                  <Col><Text style={styles.smallText}>S</Text></Col>
+                  <Col><Text style={styles.smallText}>A</Text></Col>
+                  <Col><Text style={styles.smallText}>R</Text></Col>
+                  <Col><Text style={styles.smallText}>H.Adv</Text></Col>
+                  <Col><Text style={styles.smallText}>B.Adv</Text></Col>
+                </Row>
+                {
+                  this.state.attacks.map((attackData, name) => {
+                    return (
+                      <Row key={name}>
+                        <Col>
+                          <AttackName name={name} />
+                        </Col>
+                        <Col>
+                          <Text key='damage' style={styles.smallText}>
+                            {attackData.damage}
+                          </Text>
+                        </Col>
+                        <Col>
+                          <Text key='stun' style={styles.smallText}>
+                            {attackData.stun}
+                          </Text>
+                        </Col>
+                        <Col>
+                          <Text key='startup' style={styles.smallText}>
+                            {attackData.frames.startup}
+                          </Text>
+                        </Col>
+                        <Col>
+                          <Text key='active' style={styles.smallText}>
+                            {attackData.frames.active}
+                          </Text>
+                        </Col>
+                        <Col>
+                          <Text key='recovery' style={styles.smallText}>
+                            {attackData.frames.recovery}
+                          </Text>
+                        </Col>
+                        <Col>
+                          <Text key='hit-advantage' style={styles.smallText}>
+                            {attackData.frames.hit_advantage}
+                          </Text>
+                        </Col>
+                        <Col>
+                          <Text key='block-advantage' style={styles.smallText}>
+                            {attackData.frames.block_advantage}
+                          </Text>
+                        </Col>
+                      </Row>
+                    )
+                  }).toList()
+                }
+              </Grid>
+
             </NativeBaseList>
           </Content>
           <NavigationFooter

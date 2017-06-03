@@ -28,7 +28,7 @@ export default class FrameDatum extends Component {
             {this.name}
           </Text>
           <Body>
-            <Text style={[styles.item, styles.alignRight]}>
+            <Text style={[styles.text, styles.alignRight]}>
               {this.datum}
             </Text>
           </Body>

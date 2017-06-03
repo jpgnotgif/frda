@@ -5,12 +5,13 @@ import {
   Button,
   Left,
   ListItem,
-  Text,
   Thumbnail
 } from 'native-base'
 
 import config from '../../config/defaults'
 import Name   from './sfv/Name'
+
+import styles from '../../styles/defaults'
 
 export default class Character extends Component {
   constructor(props) {
@@ -22,28 +23,18 @@ export default class Character extends Component {
 
   render() {
     return (
-      <ListItem avatar>
+      <ListItem avatar onPress={() => {
+        this.navigation.navigate(
+          'AttackList', {
+            name: this.name,
+            imageUrl: this.imageUrl
+          })
+        }} style={{ padding: 14 }}>
         <Left>
-          <Button dark transparent onPress={() => {
-            this.navigation.navigate(
-              'AttackList', {
-                name: this.name,
-                imageUrl: this.imageUrl
-              })
-            }} >
-            <Thumbnail medium source={{uri: this.imageUrl}} />
-          </Button>
+          <Thumbnail medium source={{uri: this.imageUrl}} />
         </Left>
         <Body>
-          <Button dark transparent onPress={() => {
-            this.navigation.navigate(
-              'AttackList', {
-                name: this.name,
-                imageUrl: this.imageUrl
-              })
-            }} >
-            <Name value={this.name} />
-          </Button>
+          <Name value={this.name} style={styles.listItem}/>
         </Body>
       </ListItem>
     )

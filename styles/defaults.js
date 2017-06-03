@@ -2,12 +2,23 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   headerItem: {
+    color: '#384850',
     fontWeight: 'bold',
-    fontSize: 18
+    fontSize: 14
   },
 
-  item: {
-    fontSize: 18,
+  smallText: {
+    fontSize: 10
+  },
+
+  listItem: {
+    color: '#384850',
+    fontSize: 30,
+  },
+
+  text: {
+    color: '#384850',
+    fontSize: 14,
   },
 
   alignRight: {

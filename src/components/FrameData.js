@@ -30,7 +30,9 @@ export default class FrameData extends Component {
       'Stun': this.metadata.stun,
       'Startup': this.frames.startup,
       'Active': this.frames.active,
-      'Recovery': this.frames.recovery
+      'Recovery': this.frames.recovery,
+      'H.Adv': this.frames.hit_advantage,
+      'B.Adv': this.frames.block_advantage
     })
   }
 

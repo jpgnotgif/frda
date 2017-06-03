@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+
 import {
   Text
-} from 'native-base'
+} from 'react-native'
+
+import styles from '../../../styles/defaults'
 
 export default class Name extends Component {
   constructor(props) {
@@ -13,6 +16,7 @@ export default class Name extends Component {
       'Mbison': 'M. Bison',
       'Rmika': 'R. Mika'
     }
+    this.style = this.props.style
   }
 
   toPrettyName() {
@@ -23,8 +27,9 @@ export default class Name extends Component {
   }
 
   render() {
+    // TODO: add check if this.style is null
     return (
-      <Text>
+      <Text style={[this.style]}>
         {this.toPrettyName()}
       </Text>
     )
