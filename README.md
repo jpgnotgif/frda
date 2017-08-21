@@ -1,4 +1,4 @@
-# frda
+# frda [DEPRECATED]
 
 <img src="https://s3.amazonaws.com/project-demos/frda-ios-demo.gif" alt="Demo!" width="200" height="300" />
 
@@ -21,4 +21,4 @@ Utilizes the [frda.js API](https://github.com/jpgnotgif/frda.js)
 
 ## Note
 
-**This project is still WIP**
+This version is now deprecated. [v2 of app lives here](https://github.com/jpgnotgif/frda-v2)
